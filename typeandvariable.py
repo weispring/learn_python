@@ -98,20 +98,20 @@ else:
 
 for letter in 'Hello 两点水':
     print(letter)
-dict={"1":"a","2":"b"}
-for i in dict:
+dict11={"1":"a","2":"b"}
+for i in dict11:
     print(i)
 
 set={"11","aa", 100, 39}
 for i in set:
     print(i)
 
-list=["11","aa", 100, 39]
-for i in list:
+list22=["11","aa", 100, 39]
+for i in list22:
     print(i)
 
-list=(1,2, "aaa", 55.5)
-for i in list:
+list22=(1,2, "aaa", 55.5)
+for i in list22:
     print(i)
 
 # 比如 range(0,10,2) , 它的意思是：从 0 数到 10（不取 10 ），每次间隔为 2 。
@@ -239,3 +239,91 @@ sum2 = lambda num1 : num1 + num2
 
 print( sum1( 1 ) )
 print( sum2( 1 ) )
+
+
+# 迭代器和生成器
+# python中可迭代对象字符串、列表、元组、字典
+# 迭代器，迭代器是一个可以记住遍历的位置的对象。
+# 迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。
+# 迭代器只能往前不会后退。
+# 迭代器有两个基本的方法：iter() 和 next(),且字符串，列表或元组对象都可用于创建迭代器，迭代器对象可以使用常规 for 语句进行遍历，也可以使用 next() 函数来遍历。
+
+
+# 异同：迭代器通过已经存在的数据创建，而生成器不需要
+
+# 1、字符创创建迭代器对象
+str1 = 'liangdianshui'
+iter1 = iter ( str1 )
+
+# 2、list对象创建迭代器
+list1 = [1,2,3,4]
+iter2 = iter ( list1 )
+
+# 3、tuple(元祖) 对象创建迭代器
+tuple1 = ( 1,2,3,4 )
+iter3 = iter ( tuple1 )
+
+# for 循环遍历迭代器对象
+for x in iter1 :
+    print ( x , end = '' )
+
+print('\n------------------------')
+
+# next() 函数遍历迭代器
+while True :
+    try :
+        print ( next ( iter3 ) )
+    except StopIteration :
+        print("异常")
+        break
+
+print('\n'.join([' '.join ('%dx%d=%2d' % (x,y,x*y)  for x in range(1,y+1)) for y in range(1,10)]))
+
+# list 生成式
+list1=list(range(1,31))
+print(list1)
+
+
+list1=[x * x for x in range(1, 11)]
+print(list1)
+
+list1= [x * x for x in range(1, 11) if x % 2 == 0]
+print(list1)
+
+list1= [(x+1,y+1) for x in range(3) for y in range(5)]
+print(list1)
+
+
+# 在 Python 中，这种一边循环一边计算的机制，称为生成器：generator。
+# 在 Python 中，使用了 yield 的函数被称为生成器（generator）。
+# 跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。
+# 在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值。并在下一次执行 next()方法时从当前位置继续运行。
+# 生成器可以看做一种特殊的迭代器
+# 函数式生成器可重复调用执行
+gen= (x * x for x in range(10))
+for num  in  gen :
+    print(num)
+
+# -*- coding: UTF-8 -*-
+def fibon(n):
+    a = b = 1
+    for i in range(n):
+        yield a
+        a, b = b, a + b
+# 引用函数
+for x in fibon(10):
+    print(x , end = ' ')
+
+# 为了同时迭代多个序列，使用 zip() 函数，迭代次数一最短序列为准，zip可接受多个序列，且能创建字典对象
+
+names = ['laingdianshui', 'twowater', '两点水']
+ages = [18, 19]
+for name, age in zip(names, ages):
+    print(name,age)
+
+names = ['laingdianshui', 'twowater', '两点水']
+ages = [18, 19]
+
+dict1=dict(zip(names,ages)) # dict不可前面被定义，否则此处无效
+
+print(dict1)
