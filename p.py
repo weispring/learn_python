@@ -7,3 +7,24 @@ print(list1)
 # 杨辉三角
 
 # join
+
+def triangles( n ):         # 杨辉三角形
+    L = [1]
+    while True:
+        print("==", L)
+        yield L
+        L.append(0)
+        print(">>>", L)
+        L = [ L [ i -1 ] + L [ i ] for i in range (len(L))]
+
+n= 0
+for t in triangles( 10 ):   #直接修改函数名即可运行
+    print(t)
+    n = n + 1
+    if n == 10:
+        break
+
+# 调用class.a=""，无法覆盖对象的属性值
+# 如何销毁对象
+
+if __name__ == '__main__':
