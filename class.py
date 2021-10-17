@@ -73,8 +73,8 @@ class P1():
 class P2(P,P1):
     var1=100
     def testmethod1(self):
-        #super().testmethod() #知道第一个类执行
-        super(P1, self).testmethod()  # 多继承，执行指定父类
+        super().testmethod() #知道第一个类执行
+        super(P2, self).testmethod()  # 多继承，执行指定父类
         print("p2")
 
 po=P2()
@@ -82,4 +82,15 @@ print(isinstance(po, P))
 print(isinstance(po, P1))
 po.testmethod1()
 
+print(hasattr(po, "var1"))
+print(getattr(po, "var1"))
+setattr(po, "var1", "-==")
+print(getattr(po, "var1"))
+print(dir(po))
 
+
+# 一般情况下，我们会使用 __private_attrs 两个下划线开头，声明该属性为私有，不能在类地外部被使用或直接访问。在类内部的方法中使用时 self.__private_attrs。
+# 但是 Python 对属性的访问控制是靠程序员自觉的。
+
+print(1+2)
+print('1' + '2')
