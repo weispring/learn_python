@@ -3,7 +3,10 @@ import json
 
 from flask import Flask, request
 import text_process
-
+import nltk
+# punkt not found
+# 1.到github https://github.com/nltk/nltk_data 把package文件下载下来，
+# 2.把packages文件夹拷贝到报错显示的搜索路径
 app = Flask(__name__)
 
 MY_URL = '/knowledge/api/v1/'

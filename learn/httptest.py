@@ -1,6 +1,7 @@
 import urllib.request
 import urllib.parse
 import requests
+
 #pip install requests
 resp = urllib.request.urlopen("http://www.baidu.com/")
 html = resp.read().decode("utf-8")
