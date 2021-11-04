@@ -173,3 +173,5 @@ print(name.__class__.__class__)
 print(fu.__class__.__class__)
 print(mEat.__class__.__class__)
 
+import sys
+print(sys.version)
