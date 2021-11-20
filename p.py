@@ -28,8 +28,9 @@ for t in triangles( 10 ):   #直接修改函数名即可运行
 # 如何销毁对象
 
 if __name__ == '__main__':
+    print("")
 
-# 对象的描述器
+#对象的描述器
 # __metaclass__
 
 # 经常运行报错
