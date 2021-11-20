@@ -3,11 +3,16 @@ import json
 
 from flask import Flask, request
 import text_process
-import nltk
 
 # punkt not found
 # 1.到github https://github.com/nltk/nltk_data 把package文件下载下来，
 # 2.把packages文件夹拷贝到报错显示的搜索路径
+# 上述方法不管用，实际处理方式如下
+# 修改文件C:\Windows\System32\drivers\etc\hosts 添加 199.232.68.133 raw.githubusercontent.com
+# 打开的命令提示符中执行python命令：
+# import nltk
+# nltk.download()
+
 app = Flask(__name__)
 
 MY_URL = '/knowledge/api/v1/'
@@ -32,14 +37,15 @@ def get_task():
     # in_json = json.dumps(text_process.handle_client("工单主题:核心系统数据库服务器上架;", 3))
     # return str(in_json)
     # print(text_process.handle_client("工单主题:核心系统数据库服务器上架;", 3))
-    return str(text_process.handle_client(keystr, topN))
+    nameDict = {"1": keystr, "2": topN}
+    return str(nameDict)
 
 
 # post
 @app.route(MY_URL + 'post/tasks', methods=['POST'])
 def post_task():
     param = request.json
-    # print(param)  # request.args请求参数
+    print(param)  # request.args请求参数
     # print(type(param))
     # print(param)
     keystr = param['keystr']
@@ -48,11 +54,24 @@ def post_task():
     # return str(text_proprint(text_process.handle_client("工单主题:核心系统数据库服务器上架;", 3))cess.handle_client("工单主题:核心系统数据库服务器上架;", 3))
     #
     # in_json = json.dumps(text_process.handle_client(keystr, topN))
-    # return str(in_json)
-    return str(text_process.handle_client(keystr, topN))
+    #return str(in_json)
+
+    nameDict = {"1": keystr, "2": topN}
+    return str(nameDict)
+
+@app.route(MY_URL + 'add', methods=['GET'])
+def get_task():
+    param = request.args.to_dict()
+    # print(param)  # request.args请求参数
+    # print(type(param))
+    # print(param)
+    keystr = param['keystr']
+    topN = param['topN']
+    nameDict = {"1": keystr, "2": topN}
+    return str(nameDict)
 
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0', port=8000)
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
 # http://127.0.0.1:5000/knowledge/api/v1/get/tasks?keystr="服务器上架"&topN=3
