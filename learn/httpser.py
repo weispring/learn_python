@@ -7,11 +7,8 @@ import text_process
 # punkt not found
 # 1.到github https://github.com/nltk/nltk_data 把package文件下载下来，
 # 2.把packages文件夹拷贝到报错显示的搜索路径
-# 上述方法不管用，实际处理方式如下
-# 修改文件C:\Windows\System32\drivers\etc\hosts 添加 199.232.68.133 raw.githubusercontent.com
-# 打开的命令提示符中执行python命令：
-# import nltk
-# nltk.download()
+# 3.解压对应文件，如：punkt.zip
+
 
 app = Flask(__name__)
 
@@ -60,7 +57,7 @@ def post_task():
     return str(nameDict)
 
 @app.route(MY_URL + 'add', methods=['GET'])
-def get_task():
+def add_record():
     param = request.args.to_dict()
     # print(param)  # request.args请求参数
     # print(type(param))
