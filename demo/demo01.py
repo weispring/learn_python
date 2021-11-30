@@ -331,3 +331,80 @@ if(a.find("uu") > -1):
 print("12hh雨衣".replace("12", "oo"))
 # 大小写转换
 print("hhhyyXX".upper())
+
+
+
+list = ['Google', 'Runoob', 1997, 2000]
+
+print ("原始列表 : ", list)
+del list[2]
+list.pop(2)
+print ("删除第三个元素 : ", list)
+print(len(list))
+
+# 嵌套列表
+a = ['a', 'b', 'c']
+n = [1, 2, 3]
+x = [a, n]
+print(x, x[0], x[0][1], id(x), sep="\n")
+x.insert(1, "a")
+print("id(x)",x, id(x))
+
+
+
+'''
+元组中只包含一个元素时，需要在元素后面添加逗号 , ，否则括号会被当作运算符使用：
+同列表一样，元素类型可以不同
+关于元组是不可变的，是其中的元素所只想的地址不变
+'''
+# 元组
+tup1 = ('Google', 'Runoob', 1997, 2000)
+tup2 = (1, 2, 3, 4, 5 )
+tup3 = "a", "b", "c", "d"   #  不需要括号也可以
+print(tup1, tup2, tup3, sep="\n")
+tup1 = ()
+
+# 字典
+'''
+键必须是唯一的，但值则不必。
+值可以取任何数据类型，但键必须是不可变的，如字符串，数字。
+不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住
+键必须不可变，所以可以用数字，字符串或元组充当，而用列表就不行
+
+'''
+
+dict1 = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+
+print ("dict['Name']: ", dict1['Name'])
+print ("dict['Age']: ", dict1['Age'])
+dict1 = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+
+dict1['Age'] = 8               # 更新 Age
+dict1['School'] = "菜鸟教程"  # 添加信息
+del dict1['Name'] # 删除键 'Name'
+print(str(dict1))
+
+print(dict1.__str__(), "Age" in dict1, dict1.items())
+dict = {'Name': 'Runoob', 'Age': 7}
+for i,j in dict.items():
+        print(i, ":\t", j)
+
+
+# 集合
+'''
+add 将元素 x 添加到集合 s 中，如果元素已存在，则不进行任何操作。
+
+upate，也可以添加元素，且参数可以是列表，元组，字典，集合
+
+s.remove( x )
+将元素 x 从集合 s 中移除，如果元素不存在，则会发生错误。
+
+此外还有一个方法也是移除集合中的元素，且如果元素不存在，不会发生错误。格式如下所示：
+s.discard( x )
+'''
+thisset = set(("Google", "Runoob", "Taobao"))
+thisset.add("Facebook")
+thisset.update([1,4],[5,6])
+thisset.discard("Taobao")
+# thisset.remove("hh")
+print(thisset)
