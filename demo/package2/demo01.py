@@ -390,7 +390,7 @@ for i,j in dict.items():
         print(i, ":\t", j)
 
 
-# 集合
+# 集合 无序不重复
 '''
 add 将元素 x 添加到集合 s 中，如果元素已存在，则不进行任何操作。
 
@@ -408,3 +408,21 @@ thisset.update([1,4],[5,6])
 thisset.discard("Taobao")
 # thisset.remove("hh")
 print(thisset)
+
+
+# break 语句可以跳出 for 和 while 的循环体。如果你从 for 或 while 循环中终止，任何对应的循环 else 块将不执行。
+a = 0
+n = 100
+s = 0
+while a <= 100:
+        s = s + a
+        a = a + 1
+else:
+        print("和是%d"%s)
+
+if n > 100:
+        pass
+elif n > 200:
+        pass
+else:
+        pass

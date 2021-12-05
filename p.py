@@ -35,5 +35,5 @@ if __name__ == '__main__':
 
 # 经常运行报错
 
-
+import module1
 
