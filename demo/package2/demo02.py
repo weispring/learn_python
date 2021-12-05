@@ -235,3 +235,40 @@ pickle.dump(data1, output)
 output.flush()
 data2 = pickle.load(open('data.pkl', 'rb'))
 print(data2)
+
+
+''''
+try/except...else
+try/except 语句还有一个可选的 else 子句，如果使用这个子句，那么必须放在所有的 except 子句之后。
+else 子句将在 try 子句没有发生任何异常的时候执行。
+
+如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。
+
+一些对象定义了标准的清理行为，无论系统是否成功的使用了它，一旦不需要它了，那么这个标准的清理行为就会执行。
+'''
+
+for arg in sys.argv:
+        try:
+                f = open(arg, 'r', encoding="utf-8")
+        except IOError:
+                print('cannot open', arg)
+        else:
+                print(arg, 'has', len(f.readlines()), 'lines')
+                f.close()
+        finally:
+                print('这句话，无论异常是否发生都会执行。')
+
+def raiseexception():
+        x = 10
+        if x > 5:
+                raise Exception('x 不能大于 5。x 的值为: {}'.format(x))
+
+raiseexception()
+
+
+# 关键词 with 语句就可以保证诸如文件之类的对象在使用完之后一定会正确的执行他的清理方法:
+
+with open("myfile.txt") as f:
+        for line in f:
+                print(line, end="")
+# 以上这段代码执行完毕后，就算在处理过程中出问题了，文件 f 总是会关闭。
