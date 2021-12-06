@@ -263,12 +263,119 @@ def raiseexception():
         if x > 5:
                 raise Exception('x 不能大于 5。x 的值为: {}'.format(x))
 
-raiseexception()
+try:
+        raiseexception()
+except:
+        print("exception ")
 
 
 # 关键词 with 语句就可以保证诸如文件之类的对象在使用完之后一定会正确的执行他的清理方法:
 
-with open("myfile.txt") as f:
+with open("foo.txt", encoding="utf-8") as f:
         for line in f:
                 print(line, end="")
 # 以上这段代码执行完毕后，就算在处理过程中出问题了，文件 f 总是会关闭。
+
+'''
+类的继承机制允许多个基类，派生类可以覆盖基类中的任何方法，方法中可以调用基类中的同名方法。
+对象可以包含任意数量和类型的数据。
+
+类有一个名为 __init__() 的特殊方法（构造方法），该方法在类实例化时会自动调用
+类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self。
+self 代表的是类的实例，代表当前对象的地址，而 self.class 则指向类。
+
+多继承，需要注意圆括号中父类的顺序，若是父类中有相同的方法名，而在子类使用时未指定，python从左至右搜索 即方法在子类中未找到时，从左到右查找父类中是否包含方法。
+
+类属性与方法
+类的私有属性
+__private_attrs：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 self.__private_attrs。
+类的方法
+在类的内部，使用 def 关键字来定义一个方法，与一般函数定义不同，类方法必须包含参数 self，且为第一个参数，self 代表的是类的实例。
+self 的名字并不是规定死的，也可以使用 this，但是最好还是按照约定使用 self。
+类的私有方法
+__private_method：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。self.__private_methods。
+
+类的专有方法：
+__init__ : 构造函数，在生成对象时调用
+__del__ : 析构函数，释放对象时使用
+__setitem__ : 按照索引赋值
+__getitem__: 按照索引获取值
+
+'''
+
+class MyClass:
+        def __init__(self, a, b):
+                self.a = a
+                self.__b = b # 私有属性
+                print(f"变量值为：{self.a}, {self.__b}")
+
+
+a = MyClass("aaa", 300)
+print(a.a, a.__setattr__("a", "哈哈哈"))
+print(a.a)
+
+
+class Parent:        # 定义父类
+        def myMethod(self):
+                print ('调用父类方法')
+
+class Child(Parent): # 定义子类
+        def myMethod(self):
+                print ('调用子类方法')
+
+c = Child()          # 子类实例
+c.myMethod()         # 子类调用重写方法
+super(Child, c).myMethod() #用子类对象调用父类已被覆盖的方法
+
+
+'''
+命名空间
+内置名称（built-in names）， Python 语言内置的名称，比如函数名 abs、char 和异常名称 BaseException、Exception 等等。
+全局名称（global names），模块中定义的名称，记录了模块的变量，包括函数、类、其它导入的模块、模块级的变量和常量。
+局部名称（local names），函数中定义的名称，记录了函数的变量，包括函数的参数和局部定义的变量。（类中定义的也是）
+
+有四种作用域：
+L（Local）：最内层，包含局部变量，比如一个函数/方法内部。
+E（Enclosing）：包含了非局部(non-local)也非全局(non-global)的变量。比如两个嵌套函数，一个函数（或类） A 里面又包含了一个函数 B ，那么对于 B 中的名称来说 A 中的作用域就为 nonlocal。
+G（Global）：当前脚本的最外层，比如当前模块的全局变量。
+B（Built-in）： 包含了内建的变量/关键字等，最后被搜索。
+规则顺序： L –> E –> G –> B。
+
+Python 中只有模块（module），类（class）以及函数（def、lambda）才会引入新的作用域，其它的代码块（如 if/elif/else/、try/except、for/while等）是不会引入新的作用域的，也就是说这些语句内定义的变量，外部也可以访问，如下代码：
+
+当内部作用域想修改外部作用域的变量时，就要用到 global 和 nonlocal 关键字了。
+
+'''
+
+if True:
+        msg_inner = "哈哈哈哈，我测试"
+print(msg_inner)
+
+def test():
+        msg_inn = 'I am from Runoob'
+
+
+# lobal 和 nonlocal关键字
+# 当内部作用域想修改外部作用域的变量时，就要用到 global 和 nonlocal 关键字了。
+
+num = 1
+def fun1():
+        global num  # 需要使用 global 关键字声明
+        print(num)
+        num = 123
+        print(num)
+fun1()
+print(num)
+
+
+def outer():
+        num = 10
+        def inner():
+                nonlocal num   # nonlocal关键字声明
+                num = 100
+                print(num)
+        inner()
+        print(num)
+outer()
+
+
