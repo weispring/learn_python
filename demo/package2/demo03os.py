@@ -25,10 +25,54 @@ print(re.sub(r'(\b[a-z]+) ', r'\1', 'cat in the the hat'))
 from urllib.request import urlopen
 
 
-for line in urlopen('https://blog.csdn.net/weixin_39584549/article/details/110544661'):
-    line = line.decode('utf-8')  # Decoding the binary data to text
-    if 'EST' in line or 'EDT' in line:
-        # look for Eastern Time
-        print(line)
+#for line in urlopen('https://blog.csdn.net/weixin_39584549/article/details/110544661'):
+#    line = line.decode('utf-8')  # Decoding the binary data to text
 
 
+import datetime
+now = datetime.date.today()
+print(now)
+print(datetime.date(2003, 12, 2))
+print(now.strftime("%Y-%m-%d %H:%M:%S"))
+
+
+import zlib
+s = b'witch which has which witches wrist watch' # b' ' 表示这是一个 bytes 对象
+print(len(s))
+t = zlib.compress(s)
+print(len(t))
+print(zlib.decompress(t))
+
+import time
+# 当前时间戳 t
+time_stamp = time.time()
+print("当前时间戳", time_stamp)
+# 时间戳转datetime
+print("时间戳转datetime", datetime.datetime.fromtimestamp(time_stamp))
+# datetime转时间戳
+today = datetime.date.today()
+print(int(time.mktime(today.timetuple())))
+# datetime转字符串
+today_str = today.strftime("%Y-%m-%d")
+print(today_str)
+# 字符串转datetime
+today = datetime.datetime.strptime(today_str, "%Y-%m-%d")
+print(today)
+
+import itertools
+a = [1,2]
+b = [3,4,100]
+c = [a, b]
+
+print(c)
+for item in itertools.product(*c):
+    print(item)
+
+def hh():
+    pass
+
+a = [1,2,3,None,(),[],]
+
+for a in a:
+    print(a)
+print(type(hh()))
