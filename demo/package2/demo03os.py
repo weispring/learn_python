@@ -110,6 +110,18 @@ count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹
 flags : 编译时用的匹配模式，数字形式。
 
 
+compile 函数
+compile 函数用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。
+re.compile(pattern[, flags])
+参数：
+pattern : 一个字符串形式的正则表达式
+flags 可选，表示匹配模式，比如忽略大小写，多行模式等，具体参数为：
+re.I 忽略大小写
+re.L 表示特殊字符集 \w, \W, \b, \B, \s, \S 依赖于当前环境
+re.M 多行模式
+re.S 即为' . '并且包括换行符在内的任意字符（' . '不包括换行符）
+re.U 表示特殊字符集 \w, \W, \b, \B, \d, \D, \s, \S 依赖于 Unicode 字符属性数据库
+re.X 为了增加可读性，忽略空格和' # '后面的注释
 '''
 phone = "2004-959-559 # 这是一个电话号码"
 
@@ -120,6 +132,30 @@ print ("电话号码 : ", num)
 # 移除非数字的内容
 num = re.sub(r'\D', "", phone)
 print ("电话号码 : ", num)
-print("")
-# ddd
-#
+
+def double(matched):
+    value = int(matched.group('value'))
+    return str(value * 2)
+
+#?P<value>的意思就是命名一个名字为value的组，匹配规则符合后面的/d+
+s = 'A23G4HFD567'
+print(re.sub('(?P<value>\d+)', "=", s))
+
+print(re.sub('(?P<value>\d+)', double, s))
+
+
+pattern = re.compile(r'\d+')
+m = pattern.match('one12twothree34four', 3)
+print(m.group(0))
+
+
+result1 = re.findall(r'\d+','runoob 123 google 456')
+pattern = re.compile(r'\d+')   # 查找数字
+result2 = pattern.findall('runoob 123 google 456')
+result3 = pattern.findall('run88oob123google456', 0, 10)
+print(result1)
+print(result2)
+print(result3)
+
+result = re.findall(r'(\w+)=(\d+)', 'set width=20 and height=10')
+print(result)
