@@ -7,7 +7,7 @@ print(str1)
 print(str2)
 print(str3)
 
-str1 = "'abc'""
+str1 = "'abc'"
 str2 = '''"abc"'''
 print(str1)
 print(str2)

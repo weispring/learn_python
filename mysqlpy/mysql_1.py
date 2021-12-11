@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+'''
+
+
 
 #问题原因：
 # python2和python3在数据库模块支持这里存在区别，python2是mysqldb，而到了python3就变成mysqlclient，pip install mysqlclient即可。
@@ -20,3 +23,5 @@ print ("Database version : %s " % data)
 
 
 db.close()
+
+'''

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
+'''
 import MySQLdb
 
 # 打开数据库连接
@@ -31,3 +31,5 @@ except:
 
 # 关闭数据库连接
 db.close()
+
+'''
