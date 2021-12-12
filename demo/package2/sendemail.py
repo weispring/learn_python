@@ -3,17 +3,17 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 # 第三方 SMTP 服务
-mail_host="smtp.XXX.com"  #设置服务器
-mail_user="XXXX"    #用户名
-mail_pass="XXXXXX"   #口令
+mail_host="smtp.qq.com"  #设置服务器
+mail_user="2629469408"    #用户名
+mail_pass="mzpdzsysikwfdjij"   #口令
 
 
-sender = 'from@runoob.com'
-receivers = ['429240967@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+sender = '2629469408@qq.com'
+receivers = ['2410308914@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 
 message = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')
-message['From'] = Header("菜鸟教程", 'utf-8')
-message['To'] =  Header("测试", 'utf-8')
+message['From'] = Header("菜鸟教程", 'utf-8')# 发件人名称
+message['To'] =  Header("测试", 'utf-8') # 收件人名称
 
 subject = 'Python SMTP 邮件测试'
 message['Subject'] = Header(subject, 'utf-8')
